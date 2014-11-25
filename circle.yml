@@ -1,8 +1,9 @@
 dependencies:
   override:
     - sudo apt-get update
-    - sudo apt-get -y install vagrant
-    - sudo apt-get -y remove vagrant
-    - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb
-    - sudo dpkg -i vagrant_1.6.5_x86_64.deb
+    - sudo apt-get -y upgrade
+    #- sudo apt-get -y install vagrant
+    #- sudo apt-get -y remove vagrant
+    #- wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb
+    #- sudo dpkg -i vagrant_1.6.5_x86_64.deb
     - vagrant up

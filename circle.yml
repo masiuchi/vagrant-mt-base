@@ -1,9 +1,16 @@
+machine:
+  services:
+    - docker
+
 dependencies:
+  cache_directories:
+    - "~/docker"
+
   override:
-    - sudo apt-get update
-    - sudo apt-get -y upgrade
-    #- sudo apt-get -y install vagrant
-    #- sudo apt-get -y remove vagrant
-    #- wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb
-    #- sudo dpkg -i vagrant_1.6.5_x86_64.deb
-    - vagrant up
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - docker build -t mt-base .
+    - mkdir -p ~/docker; docker save mt-base > ~/docker/image.tar
+
+test:
+  override:
+    - docker run -v $PWD:/mt-base -w /mt-base mt-base vagrant up

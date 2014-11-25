@@ -1,12 +1,4 @@
-machine:
-  services:
-    - docker
-
 dependencies:
-  cache_directories:
-    - "~/docker"
-
   override:
-    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
-    - docker build -t mt-base .
-    - mkdir -p ~/docker; docker save mt-base > ~/docker/image.tar
+    - sudo apt-get -y install vagrant
+    - vagrant up
